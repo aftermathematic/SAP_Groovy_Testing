@@ -9,7 +9,7 @@ BasicConfigurator.configure()
 
 // Load Groovy Script
 GroovyShell shell = new GroovyShell()
-Script script = shell.parse(new File('../../../src/main/groovy/XMLTransformation.groovy'))
+Script script = shell.parse(new File('../../../src/main/groovy/processData.groovy'))
 
 // Initialize CamelContext and exchange for the message
 CamelContext context = new DefaultCamelContext()
@@ -17,20 +17,22 @@ Exchange exchange = new DefaultExchange(context)
 Message msg = new Message(exchange)
 
 // Initialize the message body with the input file
-def body = new File('../../../data/in/input1.xml')
+def body = new File('../../../data/in/input.xml')
+
+//Initialize properties and headers
+getPropsHeaders('../../../data/in/_properties.txt', "properties", msg)
+getPropsHeaders('../../../data/in/_headers.txt', "headers", msg)
 
 // Set exchange body in case Type Conversion is required
 exchange.getIn().setBody(body)
 msg.setBody(exchange.getIn().getBody())
-//msg.setHeader("TestHeader", "This is a dummy test header")
-//msg.setProperty("TestHeader", "This is a dummy test property")
 
 // Execute script
 script.processData(msg)
 exchange.getIn().setBody(msg.getBody())
 
 try {
-    FileWriter writer = new FileWriter('../../../data/out/output1.xml')
+    FileWriter writer = new FileWriter('../../../data/out/output.xml')
     writer.write(msg.getBody(String))
     writer.close()
 } catch (IOException e) {
@@ -39,12 +41,40 @@ try {
 }
 
 // Display results of script in console
-//println("Body:\r\n\r\n${msg.getBody(String)}")
 println()
-println("===============================================")
-println('Headers:')
+println("\033[1mBody: \033[0m")
+println(msg.getBody(String))
+println()
+println("\033[1mHeaders: \033[0m")
 msg.getHeaders().each { k, v -> println("$k = $v") }
 println()
-println('Properties:')
+println("\033[1mProperties: \033[0m")
 msg.getProperties().each { k, v -> println("$k = $v") }
-println("===============================================")
+
+void getPropsHeaders(String fileName, String type, Message msg) {
+
+   try {
+        FileReader reader = new FileReader(fileName)
+        BufferedReader bufferedReader = new BufferedReader(reader)
+
+        String line
+        while ((line = bufferedReader.readLine()) != null) {
+
+            String[] parts = line.split("=")
+            String prop = parts[0]
+            String val = parts[1]
+
+            if (fileName.contains("headers")) {
+                msg.setHeader(prop, val)
+            }
+            if (fileName.contains("properties")) {
+                msg.setProperty(prop, val)
+            }
+
+        }
+        reader.close()
+
+    } catch (IOException e) {
+        e.printStackTrace()
+    }
+}
