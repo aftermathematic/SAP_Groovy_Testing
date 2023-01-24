@@ -1,4 +1,4 @@
-# SAP_Groovy_Testing in IntelliJ IDEA
+# SAP Groovy script testing in IntelliJ IDEA
 
 This small IntelliJ program offers the possibility to test the Groovy scripts for your SAP iflows locally, with IntelliSense.
 
