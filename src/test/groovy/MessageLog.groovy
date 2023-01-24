@@ -3,6 +3,10 @@ import com.sap.gateway.ip.core.customdev.util.Message
 class MessageLog {
     private Message msg
 
+    MessageLog(Message message) {
+        msg = message
+    }
+
     void setStringProperty(String p0, String p1) {
         msg.setProperty(p0, p1)
     }
@@ -37,9 +41,5 @@ class MessageLog {
 
     void addCustomHeaderProperty(String p0, String p1) {
         msg.setProperty(p0, p1)
-    }
-
-    MessageLog(Message message) {
-        msg = message
     }
 }
