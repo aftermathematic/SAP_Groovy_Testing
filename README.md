@@ -11,8 +11,8 @@ place them in /data/in/properties.txt and /data/in/headers.txt as key/value pair
 The console will also inform you of the headers and properties that were set.
 
 ### For optimal performance, please use following JDK's:
-Groovy: 2.4.21
-Java: 1.8.0_341
-Camel: 2.24.2-sap-29
+- Groovy: 2.4.21
+- Java: 1.8.0_341
+- Camel: 2.24.2-sap-29
 
 Enjoy!
