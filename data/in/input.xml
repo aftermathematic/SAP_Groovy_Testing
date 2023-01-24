@@ -1,11 +1,16 @@
-<PurchaseOrder>
-    <Header>
-        <ID>ORD60001</ID>
-        <DocumentDate>2019-02-18</DocumentDate>
-    </Header>
-    <Item>
-        <ItemNumber>010</ItemNumber>
-        <ProductCode>MT70001</ProductCode>
-        <Quantity>57</Quantity>
-    </Item>
-</PurchaseOrder>
+<Root>
+    <Child>
+        <node1>John Doe</node1>
+        <node2>blah lah</node2>
+        <node3>more blah blah</node3>
+        <node4>enough with blah</node4>
+        <node5>johndoe@doe.com</node5>
+    </Child>
+    <Child>
+        <node1>Jane Doe</node1>
+        <node2>blah lah</node2>
+        <node3>more blah blah</node3>
+        <node4>enough with blah</node4>
+        <node5>janedoe@doe.com</node5>
+    </Child>
+</Root>
