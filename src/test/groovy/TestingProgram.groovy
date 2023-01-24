@@ -27,6 +27,10 @@ getPropsHeaders('../../../data/in/_headers.txt', "headers", msg)
 exchange.getIn().setBody(body)
 msg.setBody(exchange.getIn().getBody())
 
+// Inject messageLogFactory
+MessageLogFactory messageLogFactory = new MessageLogFactory(msg)
+script.setProperty("messageLogFactory", messageLogFactory)
+
 // Execute script
 script.processData(msg)
 exchange.getIn().setBody(msg.getBody())
@@ -51,7 +55,7 @@ println()
 println("\033[1mProperties: \033[0m")
 msg.getProperties().each { k, v -> println("$k = $v") }
 
-void getPropsHeaders(String fileName, String type, Message msg) {
+static void getPropsHeaders(String fileName, String type, Message msg) {
 
    try {
         FileReader reader = new FileReader(fileName)
