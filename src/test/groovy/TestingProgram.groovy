@@ -17,11 +17,11 @@ Exchange exchange = new DefaultExchange(context)
 Message msg = new Message(exchange)
 
 // Initialize the message body with the input file
-def body = new File('../../../data/in/input.xml')
+body = new File('../../../data/in/input.xml')
 
 //Initialize properties and headers
-getPropsHeaders('../../../data/in/_properties.txt', "properties", msg)
-getPropsHeaders('../../../data/in/_headers.txt', "headers", msg)
+getPropsHeaders('../../../data/in/_properties.txt', msg)
+getPropsHeaders('../../../data/in/_headers.txt', msg)
 
 // Set exchange body in case Type Conversion is required
 exchange.getIn().setBody(body)
@@ -35,23 +35,28 @@ try {
     FileWriter writer = new FileWriter('../../../data/out/output.xml')
     writer.write(msg.getBody(String))
     writer.close()
+
+    // Display results of script in console
+    printOutput(msg)
+
 } catch (IOException e) {
     System.out.println("An error occurred writing the output.")
     e.printStackTrace()
 }
 
-// Display results of script in console
-println()
-println("\033[1mBody: \033[0m")
-println(msg.getBody(String))
-println()
-println("\033[1mHeaders: \033[0m")
-msg.getHeaders().each { k, v -> println("$k = $v") }
-println()
-println("\033[1mProperties: \033[0m")
-msg.getProperties().each { k, v -> println("$k = $v") }
+def printOutput(Message message){
+    println('---------------------------------------------------------------------------------')
+    println('\033[1mBody: \033[0m\n' + message.getBody(String))
+    println('---------------------------------------------------------------------------------')
+    println('\033[1mHeaders: \033[0m')
+    message.getHeaders().each { println("${it.key} = ${it.value}") }
+    println('---------------------------------------------------------------------------------')
+    println('\033[1mProperties: \033[0m')
+    message.getProperties().each { println("${it.key} = ${it.value}") }
+    println('---------------------------------------------------------------------------------')
+}
 
-void getPropsHeaders(String fileName, String type, Message msg) {
+static def getPropsHeaders(String fileName, Message msg) {
 
    try {
         FileReader reader = new FileReader(fileName)
@@ -75,6 +80,7 @@ void getPropsHeaders(String fileName, String type, Message msg) {
         reader.close()
 
     } catch (IOException e) {
+       System.out.println("An error occurred fetching properties and headers.")
         e.printStackTrace()
     }
 }
