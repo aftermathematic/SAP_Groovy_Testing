@@ -20,14 +20,14 @@ Message msg = new Message(exchange)
 def body = new File('../../../data/in/input.xml')
 
 //Initialize properties and headers
-getPropsHeaders('../../../data/in/_properties.txt', "properties", msg)
-getPropsHeaders('../../../data/in/_headers.txt', "headers", msg)
+getPropsHeaders('../../../data/in/_properties.txt', msg)
+getPropsHeaders('../../../data/in/_headers.txt', msg)
 
 // Set exchange body in case Type Conversion is required
 exchange.getIn().setBody(body)
 msg.setBody(exchange.getIn().getBody())
 
-// Inject messageLogFactory
+// Inject mock messageLogFactory
 MessageLogFactory messageLogFactory = new MessageLogFactory(msg)
 script.setProperty("messageLogFactory", messageLogFactory)
 
@@ -55,7 +55,7 @@ println()
 println("\033[1mProperties: \033[0m")
 msg.getProperties().each { k, v -> println("$k = $v") }
 
-static void getPropsHeaders(String fileName, String type, Message msg) {
+static void getPropsHeaders(String fileName, Message msg) {
 
    try {
         FileReader reader = new FileReader(fileName)
@@ -79,6 +79,7 @@ static void getPropsHeaders(String fileName, String type, Message msg) {
         reader.close()
 
     } catch (IOException e) {
-        e.printStackTrace()
+       System.out.println("An error occurred fetching properties & headers.")
+       e.printStackTrace()
     }
 }
