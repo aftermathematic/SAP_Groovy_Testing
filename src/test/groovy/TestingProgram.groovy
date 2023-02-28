@@ -9,7 +9,7 @@ BasicConfigurator.configure()
 
 // Load Groovy Script
 GroovyShell shell = new GroovyShell()
-Script script = shell.parse(new File('../../../src/main/groovy/processData.groovy'))
+Script script = shell.parse(new File('./src/main/groovy/processData.groovy'))
 
 // Initialize CamelContext and exchange for the message
 CamelContext context = new DefaultCamelContext()
@@ -17,11 +17,11 @@ Exchange exchange = new DefaultExchange(context)
 Message msg = new Message(exchange)
 
 // Initialize the message body with the input file
-def body = new File('../../../data/in/input.xml')
+def body = new File('./data/in/input.xml')
 
 //Initialize properties and headers
-getPropsHeaders('../../../data/in/_properties.txt', msg)
-getPropsHeaders('../../../data/in/_headers.txt', msg)
+getPropsHeaders('./data/in/_properties.txt', msg)
+getPropsHeaders('./data/in/_headers.txt', msg)
 
 // Set exchange body in case Type Conversion is required
 exchange.getIn().setBody(body)
@@ -36,7 +36,7 @@ script.processData(msg)
 exchange.getIn().setBody(msg.getBody())
 
 try {
-    FileWriter writer = new FileWriter('../../../data/out/output.xml')
+    FileWriter writer = new FileWriter('./data/out/output.xml')
     writer.write(msg.getBody(String))
     writer.close()
 } catch (IOException e) {
