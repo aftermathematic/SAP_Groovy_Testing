@@ -1,41 +1,24 @@
 import com.sap.gateway.ip.core.customdev.util.Message
-import groovy.xml.MarkupBuilder
+import groovy.xml.XmlUtil
 
 Message processData(Message message) {
-
-    /*
-    // Some much used code snippets
-
     def body = message.getBody(String) as String
     def root = new XmlParser().parseText(body)
 
-    //Iterate childnodes
-    root.Person.each { node ->
-        //Remove node
-        if (node.Name.text() == 'xxxxxxxxxxxxx') {
-            node.parent().remove(node)
-        }
+    // iterate over every 'row' node
+    root.'**'.row.each { row ->
+
+        // sort all elements in the 'row' node alphabetically
+        row.children().sort { it.name() }
     }
 
-    //Remove node, lambda version
-    root.Person.findAll { it.Name.text() == 'John Doe' }.each { it.parent().remove(it) }
 
-    //Add new node to root
-    def nodeBuilder = new NodeBuilder()
-    def node = nodeBuilder.Person {
-        Name('Jan Vermeerbergen')
-        Age('42')
-        City('Wilrijk')
-    }
-    root.append(node)
-
-    //Sort the xml by attribute
-    root.Person.sort(true) { it.City.text() }
-
-    def outxml = XmlUtil.serialize(root)
-    message.setBody(outxml)
-*/
-
-
+    message.setBody(serializeXml(root))
     return message
+}
+
+// Function to serialize the root and prepend the XML declaration
+String serializeXml(def root) {
+    return XmlUtil.serialize(root).replaceAll(/<\?xml\b[^>]*\?>/,
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n")
 }

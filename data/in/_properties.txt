@@ -1,1 +1,1 @@
-Prop01=Test01
+bpid=1

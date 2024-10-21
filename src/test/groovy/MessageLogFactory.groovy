@@ -1,4 +1,5 @@
 import com.sap.gateway.ip.core.customdev.util.Message
+import MessageLog
 
 class MessageLogFactory {
     private Message msg

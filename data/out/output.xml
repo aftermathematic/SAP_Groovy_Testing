@@ -1,10 +1,78 @@
-<Employees>
-    <Employee>
-        <Name>John Doe</Name>
-        <Email>johndoe@doe.com</Email>
-    </Employee>
-    <Employee>
-        <Name>Jane Doe</Name>
-        <Email>janedoe@doe.com</Email>
-    </Employee>
-</Employees>
+<?xml version="1.0" encoding="UTF-8"?>
+<stmt_response>
+  <row>
+    <AmountField>2494.31</AmountField>
+    <AsofDate>2024-09-26 23:50:06.49</AsofDate>
+    <Company>00100</Company>
+    <CostCenter>100101</CostCenter>
+    <Currency>EUR</Currency>
+    <DateForGLandVoucherJUL>2024-09-26</DateForGLandVoucherJUL>
+    <DateInsert>2024-09-26 06:53:08.637</DateInsert>
+    <EdiBatchNumber>PHAROS-6893</EdiBatchNumber>
+    <EdiUserId name="jan">1</EdiUserId>
+    <ID>1</ID>
+    <ObjectAccount>1120</ObjectAccount>
+    <Reference2>SalesInv</Reference2>
+    <Subsidiary>00010</Subsidiary>
+  </row>
+  <row>
+    <AmountField>-48.91</AmountField>
+    <AsofDate>2024-09-26 23:50:06.49</AsofDate>
+    <Company>00300</Company>
+    <CostCenter>300159</CostCenter>
+    <Currency>EUR</Currency>
+    <DateForGLandVoucherJUL>2024-09-26</DateForGLandVoucherJUL>
+    <DateInsert>2024-09-26 06:53:08.637</DateInsert>
+    <EdiBatchNumber>PHAROS-6893</EdiBatchNumber>
+    <EdiUserId>1</EdiUserId>
+    <ID>2</ID>
+    <ObjectAccount>4000</ObjectAccount>
+    <Reference2>SalesInv</Reference2>
+    <Subsidiary>00030</Subsidiary>
+  </row>
+  <row>
+    <AmountField>-2199.15</AmountField>
+    <AsofDate>2024-09-26 23:50:06.49</AsofDate>
+    <Company>00100</Company>
+    <CostCenter>100105</CostCenter>
+    <Currency>EUR</Currency>
+    <DateForGLandVoucherJUL>2024-09-26</DateForGLandVoucherJUL>
+    <DateInsert>2024-09-26 06:53:08.637</DateInsert>
+    <EdiBatchNumber>PHAROS-6893</EdiBatchNumber>
+    <EdiUserId>1</EdiUserId>
+    <ID>3</ID>
+    <ObjectAccount>4000</ObjectAccount>
+    <Reference2>SalesInv</Reference2>
+    <Subsidiary/>
+  </row>
+  <row>
+    <AmountField>-676.46</AmountField>
+    <AsofDate>2024-09-26 23:50:06.49</AsofDate>
+    <Company>00200</Company>
+    <CostCenter>200124</CostCenter>
+    <Currency>EUR</Currency>
+    <DateForGLandVoucherJUL>2024-09-25</DateForGLandVoucherJUL>
+    <DateInsert>2024-09-26 06:53:08.637</DateInsert>
+    <EdiBatchNumber>PHAROS-6893</EdiBatchNumber>
+    <EdiUserId>1</EdiUserId>
+    <ID>4</ID>
+    <ObjectAccount>2360</ObjectAccount>
+    <Reference2>SalesInv</Reference2>
+    <Subsidiary>00010</Subsidiary>
+  </row>
+  <row>
+    <AmountField>-318.00</AmountField>
+    <AsofDate>2024-09-26 23:50:06.49</AsofDate>
+    <Company>00200</Company>
+    <CostCenter>200169</CostCenter>
+    <Currency>EUR</Currency>
+    <DateForGLandVoucherJUL>2024-09-25</DateForGLandVoucherJUL>
+    <DateInsert>2024-09-26 06:53:08.637</DateInsert>
+    <EdiBatchNumber>PHAROS-6893</EdiBatchNumber>
+    <EdiUserId>1</EdiUserId>
+    <ID>5</ID>
+    <ObjectAccount>4201</ObjectAccount>
+    <Reference2>SalesInv</Reference2>
+    <Subsidiary/>
+  </row>
+</stmt_response>
